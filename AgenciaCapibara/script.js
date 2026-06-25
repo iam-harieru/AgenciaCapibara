@@ -83,6 +83,66 @@ function saveCart() {
   localStorage.setItem("capibaraCart", JSON.stringify(cart));
 }
 
+function getCartTotal() {
+  return cart.reduce((sum, item) => sum + item.precoValor * item.quantidade, 0);
+}
+
+function getCheckoutButtons() {
+  return Array.from(document.querySelectorAll("a.buy-button.full-width")).filter(
+    button => button.textContent.trim().toLowerCase() === "finalizar compra"
+  );
+}
+
+async function processCheckout() {
+  if (cart.length === 0) {
+    alert("Seu carrinho está vazio.");
+    return;
+  }
+
+  const orderPayload = {
+    items: cart,
+    total: getCartTotal(),
+    customer: {
+      origem: currentPage || "site",
+      observacao: "Pedido enviado pelo front-end"
+    }
+  };
+
+  try {
+    const response = await fetch("/api/pedidos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(orderPayload)
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.mensagem || "Erro ao enviar pedido");
+    }
+
+    const data = await response.json();
+    alert(`Pedido enviado com sucesso! ID ${data.pedidoId}`);
+    cart = [];
+    saveCart();
+    updateCartUI();
+    closeCart();
+  } catch (error) {
+    console.error(error);
+    alert("Não foi possível finalizar o pedido. Tente novamente.");
+  }
+}
+
+function bindCheckoutButtons() {
+  getCheckoutButtons().forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      processCheckout();
+    });
+  });
+}
+
 function updateCartUI() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantidade, 0);
   cartCount.textContent = totalItems;
