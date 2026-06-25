@@ -1,0 +1,80 @@
+[
+  {
+    "idProduto": 1,
+    "nome": "iPhone 15",
+    "preco": 5999,
+    "descricao": "Potência premium com câmera avançada, tela brilhante e excelente experiência em todas as tarefas.",
+    "imagem": "Iphone15.webp",
+    "especificacoes": [
+      "Tela OLED de 6,1 polegadas com ótima nitidez",
+      "Câmera dupla de 48 MP para fotos detalhadas",
+      "Processador A17 Pro de última geração",
+      "Bateria de longa duração"
+    ]
+  },
+  {
+    "idProduto": 2,
+    "nome": "iPhone 14",
+    "preco": 4999,
+    "descricao": "Excelente desempenho com câmera de alta qualidade e tela Retina XDR.",
+    "imagem": "Iphone14.webp",
+    "especificacoes": [
+      "Tela OLED de 6,1 polegadas",
+      "Câmera dupla de 12 MP",
+      "Processador A15 Bionic",
+      "Resistente à água"
+    ]
+  },
+  {
+    "idProduto": 3,
+    "nome": "Samsung Galaxy S24",
+    "preco": 5499,
+    "descricao": "Flagship Android com inteligência artificial, câmeras profissionais e processador potente.",
+    "imagem": "GalaxyS24.webp",
+    "especificacoes": [
+      "Tela AMOLED de 6,2 polegadas a 120Hz",
+      "Câmera tripla com 50 MP principal",
+      "Processador Snapdragon 8 Gen 3",
+      "Bateria de 5000 mAh"
+    ]
+  },
+  {
+    "idProduto": 4,
+    "nome": "Samsung Galaxy A55",
+    "preco": 2499,
+    "descricao": "Smartphone confiável com ótimo custo-benefício, câmera caprichada e bateria duradoura.",
+    "imagem": "GalaxyA55.webp",
+    "especificacoes": [
+      "Tela AMOLED de 6,6 polegadas",
+      "Câmera principal de 50 MP",
+      "Processador MediaTek Dimensity",
+      "Bateria de 5000 mAh com carregamento rápido"
+    ]
+  },
+  {
+    "idProduto": 5,
+    "nome": "Motorola Moto G84",
+    "preco": 1799,
+    "descricao": "Excelente custo-benefício com câmera de 50 MP, processador MediaTek e bateria de longa duração.",
+    "imagem": "MotoG84.webp",
+    "especificacoes": [
+      "Tela AMOLED de 6,5 polegadas a 120Hz",
+      "Câmera principal de 50 MP",
+      "Processador MediaTek Helio G99",
+      "Bateria de 5000 mAh"
+    ]
+  },
+  {
+    "idProduto": 6,
+    "nome": "Xiaomi Redmi Note 13",
+    "preco": 1599,
+    "descricao": "Smartphone versátil com câmera versátil, tela AMOLED e ótima autonomia de bateria.",
+    "imagem": "RedmiNote13.webp",
+    "especificacoes": [
+      "Tela AMOLED de 6,67 polegadas",
+      "Câmera principal de 108 MP",
+      "Processador Snapdragon 685",
+      "Bateria de 5000 mAh com carregamento de 67W"
+    ]
+  }
+]
