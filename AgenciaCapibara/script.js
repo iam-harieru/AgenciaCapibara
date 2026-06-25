@@ -231,3 +231,74 @@ if (detailButton) {
 }
 
 updateCartUI();
+
+// Slides: unifica controles manuais e autoplay
+let slideIndex = 1;
+let slideInterval = null;
+const SLIDE_DELAY = 3000; // ms
+
+function getSlides() {
+  return document.getElementsByClassName("mySlides");
+}
+
+function getDots() {
+  return document.getElementsByClassName("dot");
+}
+
+function showSlides(n) {
+  const slides = getSlides();
+  const dots = getDots();
+  if (!slides || slides.length === 0) return;
+
+  if (typeof n === "number") slideIndex = n;
+
+  if (slideIndex > slides.length) slideIndex = 1;
+  if (slideIndex < 1) slideIndex = slides.length;
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+
+  slides[slideIndex - 1].style.display = "block";
+  if (dots[slideIndex - 1]) dots[slideIndex - 1].className += " active";
+}
+
+function plusSlides(n) {
+  slideIndex += n;
+  showSlides(slideIndex);
+  resetSlideInterval();
+}
+
+function currentSlide(n) {
+  slideIndex = n;
+  showSlides(slideIndex);
+  resetSlideInterval();
+}
+
+function startSlideInterval() {
+  stopSlideInterval();
+  slideInterval = setInterval(() => {
+    slideIndex++;
+    showSlides(slideIndex);
+  }, SLIDE_DELAY);
+}
+
+function stopSlideInterval() {
+  if (slideInterval) {
+    clearInterval(slideInterval);
+    slideInterval = null;
+  }
+}
+
+function resetSlideInterval() {
+  startSlideInterval();
+}
+
+// inicia quando DOM estiver pronto
+document.addEventListener("DOMContentLoaded", () => {
+  showSlides(slideIndex);
+  startSlideInterval();
+});
