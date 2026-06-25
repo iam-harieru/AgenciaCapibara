@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja de Celulares</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="imgs/logo.png" alt="Logo" class="logo-img">
+      BeeTech
+    </div>
+
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Pesquisar celular..."
+      >
+    </div>
+
+    <button class="cart-button" id="cartButton" type="button">
+      🛒 <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </header>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+
+  <aside class="cart-panel" id="cartPanel" aria-hidden="true">
+    <div class="cart-panel-header">
+      <h3>Seu carrinho</h3>
+      <button class="close-cart-btn" id="closeCartButton" type="button">×</button>
+    </div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cartTotal">R$ 0,00</strong>
+      </div>
+      <a class="buy-button full-width" href="">Finalizar compra</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+        <!-- slide images -->
+    <div class="slideshow-container">
+      <div class="mySlides fade">
+      <img src="/AgenciaCapibara-main/AgenciaCapibara/imgs/banner1.png" style="width:100%">
+      </div>
+      <div class="mySlides fade">
+      <img src="/AgenciaCapibara-main/AgenciaCapibara/imgs/banner2.png" style="width:100%">
+      </div>
+      <div class="mySlides fade">
+      <img src="/AgenciaCapibara-main/AgenciaCapibara/imgs/banner3.png" style="width:100%">
+    </div>
+<!-- Next and previous buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    
+    <div class="sections">
+        <a href="#">
+          <div class="col-categoria foto">
+            <p>Melhor qualidade nas fotografias</p>
+          </div>
+        </a>
+
+        <a href="#">
+          <div class="col-categoria bateria">
+            <p>Bateria de longa duração</p>
+          </div>
+        </a>
+
+        <a href="#">
+          <div class="col-categoria app">
+            <p>Mais espaço para seus aplicativos</p>
+          </div>
+        </a>
+
+        <a href="#">
+          <div class="col-categoria tela">
+            <p>As melhores e maiores telas</p>
+          </div>
+        </a>
+
+        <a href="#">
+          <div class="col-categoria jogo">
+            <p>Melhores modelos para jogos</p>
+          </div>
+        </a>
+
+      </div>
+
+    <section class="products-section">
+      <h2>Nossos Produtos</h2>
+
+      <div id="productsGrid" class="products-grid">
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-column">
+      <h3>Institucional</h3>
+      <a href="#">Sobre Nós</a>
+      <a href="#">Contato</a>
+      <a href="#">Política de Privacidade</a>
+    </div>
+
+    <div class="footer-column">
+      <h3>Pagamentos</h3>
+      <p>💳 Cartão de Crédito</p>
+      <p>PIX</p>
+    </div>
+
+    <div class="footer-column">
+      <h3>Direitos Autorais</h3>
+      <p>© 2025 Agencia Capibara</p>
+      <p>Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
