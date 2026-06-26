@@ -229,9 +229,140 @@ function renderProducts(lista) {
   });
 }
 
+function scrollToSection(selector) {
+  const target = document.querySelector(selector);
+  if (!target) return;
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+const promoButtons = Array.from(document.querySelectorAll("button[data-promo-id]"));
+const favoriteButtons = Array.from(document.querySelectorAll("button[data-favorite-id]"));
+const departmentCards = Array.from(document.querySelectorAll(".department-card[data-department]"));
+const mobileNavItems = Array.from(document.querySelectorAll(".mobile-nav-item"));
+const menuButton = document.querySelector(".menu-button");
+
+const favoritesKey = "beeFavorites";
+let favorites = JSON.parse(localStorage.getItem(favoritesKey) || "[]");
+
+function saveFavorites() {
+  localStorage.setItem(favoritesKey, JSON.stringify(favorites));
+}
+
+function isFavorite(productId) {
+  return favorites.includes(productId);
+}
+
+function updateFavoriteButton(button) {
+  const productId = button.dataset.favoriteId;
+  if (!productId) return;
+
+  const active = isFavorite(productId);
+  button.classList.toggle("active", active);
+  button.setAttribute("aria-pressed", String(active));
+  button.textContent = active ? "♥" : "❤";
+}
+
+function refreshFavorites() {
+  favoriteButtons.forEach(updateFavoriteButton);
+}
+
+function toggleFavorite(productId) {
+  if (!productId) return;
+
+  if (isFavorite(productId)) {
+    favorites = favorites.filter(id => id !== productId);
+  } else {
+    favorites.push(productId);
+  }
+
+  saveFavorites();
+  refreshFavorites();
+}
+
+function bindPromoButtons() {
+  promoButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const productId = button.dataset.promoId;
+      if (!productId) return;
+
+      addToCart(productId);
+      button.textContent = "Adicionado";
+
+      setTimeout(() => {
+        button.textContent = "Ver oferta";
+      }, 1200);
+    });
+  });
+}
+
+function bindFavoriteButtons() {
+  favoriteButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const productId = button.dataset.favoriteId;
+      toggleFavorite(productId);
+    });
+  });
+}
+
+function bindDepartmentCards() {
+  departmentCards.forEach(card => {
+    card.addEventListener("click", () => {
+      const department = card.dataset.department;
+      scrollToSection(".products-section");
+      alert(`Filtro por departamento: ${department} (em breve)`);
+    });
+  });
+}
+
+function bindMobileNav() {
+  mobileNavItems.forEach(item => {
+    item.addEventListener("click", event => {
+      event.preventDefault();
+      const action = item.dataset.nav;
+
+      if (action === "cart") {
+        openCart();
+      } else if (action === "favorites") {
+        alert("Favoritos em breve. Você pode favoritar produtos tocando no coração.");
+      } else if (action === "account") {
+        alert("Área do cliente em breve.");
+      } else if (action === "menu") {
+        scrollToSection(".departments-section");
+      }
+    });
+  });
+}
+
+function bindMenuButton() {
+  if (!menuButton) return;
+
+  menuButton.addEventListener("click", () => {
+    scrollToSection(".departments-section");
+  });
+}
+
 if (productsGrid) {
   renderProducts(celulares);
 }
+
+if (promoButtons.length) {
+  bindPromoButtons();
+}
+
+if (favoriteButtons.length) {
+  bindFavoriteButtons();
+  refreshFavorites();
+}
+
+if (departmentCards.length) {
+  bindDepartmentCards();
+}
+
+if (mobileNavItems.length) {
+  bindMobileNav();
+}
+
+bindMenuButton();
 
 if (searchInput) {
   searchInput.addEventListener("input", () => {

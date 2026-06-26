@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Loja de Celulares</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -14,10 +14,10 @@
 
   <!-- HEADER -->
   <header class="header">
-    <div class="logo">
+    <a class="logo" href="index.html">
       <img src="imgs/logo.png" alt="Logo" class="logo-img">
       BeeTech
-    </div>
+    </a>
 
     <div class="search-container">
       <input
@@ -27,9 +27,12 @@
       >
     </div>
 
-    <button class="cart-button" id="cartButton" type="button">
-      🛒 <span class="cart-count" id="cartCount">0</span>
-    </button>
+    <div class="header-actions">
+      <button class="menu-button" type="button" aria-label="Abrir menu">☰</button>
+      <button class="cart-button" id="cartButton" type="button">
+        🛒 <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
   </header>
 
   <div class="cart-overlay" id="cartOverlay"></div>
@@ -54,19 +57,93 @@
         <!-- slide images -->
     <div class="slideshow-container">
       <div class="mySlides fade">
-      <img src="/AgenciaCapibara-main/AgenciaCapibara/imgs/banner1.png" style="width:100%">
+      <img src="imgs/1.jpg" style="width:100%">
       </div>
       <div class="mySlides fade">
-      <img src="/AgenciaCapibara-main/AgenciaCapibara/imgs/banner2.png" style="width:100%">
+      <img src="imgs/2.jpg" style="width:100%">
       </div>
       <div class="mySlides fade">
-      <img src="/AgenciaCapibara-main/AgenciaCapibara/imgs/banner3.png" style="width:100%">
+      <img src="imgs/3.jpg" style="width:100%">
     </div>
 <!-- Next and previous buttons -->
       <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
       <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
-    
+
+    <section class="promo-section">
+      <div class="promo-top">
+        <div>
+          <h2>Produtos com desconto</h2>
+          <p>Confira ofertas imperdíveis com até 10% de desconto e condições especiais.</p>
+        </div>
+        <span class="promo-badge">10x de R$ 110,96</span>
+      </div>
+
+      <div class="promo-grid">
+        <article class="promo-card">
+          <div class="promo-image">
+            <img src="imgs/S24.jpg" alt="Galaxy S24" />
+          </div>
+          <div class="promo-info">
+            <h3>Galaxy S24</h3>
+            <p>LG K61, 128GB, 4GB RAM, Octa Core, Câmera de alta qualidade.</p>
+            <div class="promo-price">
+              <span class="old-price">R$ 1.229,99</span>
+              <strong>R$ 1.109,69</strong>
+            </div>
+          </div>
+          <div class="promo-actions">
+            <button class="card-button" data-promo-id="galaxy-s24" type="button">Ver oferta</button>
+            <button class="icon-button" data-favorite-id="galaxy-s24" aria-label="Favoritar">❤</button>
+          </div>
+        </article>
+
+        <article class="promo-card">
+          <div class="promo-image">
+            <img src="imgs/iPhone 14.jpg" alt="iPhone 14" />
+          </div>
+          <div class="promo-info">
+            <h3>iPhone 14</h3>
+            <p>Tela imersiva, câmera premium e desempenho sólido para o dia a dia.</p>
+            <div class="promo-price">
+              <span class="old-price">R$ 5.299,99</span>
+              <strong>R$ 4.799,00</strong>
+            </div>
+          </div>
+          <div class="promo-actions">
+            <button class="card-button" data-promo-id="iphone-14" type="button">Ver oferta</button>
+            <button class="icon-button" data-favorite-id="iphone-14" aria-label="Favoritar">❤</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="promo-banner">
+        <div>
+          <p>Grandes descontos em</p>
+          <h3>PERIFÉRICOS</h3>
+          <small>Mouse e teclados com até 20% de desconto no PIX</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="departments-section">
+      <h2>Departamentos</h2>
+      <div class="departments-grid">
+        <div class="department-card" data-department="Monitores">
+          <div class="department-icon">🖥️</div>
+          <span>Monitores</span>
+        </div>
+        <div class="department-card" data-department="Periféricos">
+          <div class="department-icon">🎧</div>
+          <span>Periféricos</span>
+        </div>
+        <div class="department-card" data-department="PCs">
+          <div class="department-icon">🖱️</div>
+          <span>PCs</span>
+        </div>
+      </div>
+    </section>
+
     <div class="sections">
         <a href="#">
           <div class="col-categoria foto">
@@ -130,6 +207,24 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <nav class="mobile-nav" aria-label="Navegação principal">
+    <a href="#" class="mobile-nav-item" data-nav="cart">
+      <span>🛒</span>
+      Carrinho
+    </a>
+    <a href="#" class="mobile-nav-item" data-nav="favorites">
+      <span>❤</span>
+      Favoritos
+    </a>
+    <a href="#" class="mobile-nav-item" data-nav="account">
+      <span>👤</span>
+      Conta
+    </a>
+    <a href="#" class="mobile-nav-item" data-nav="menu">
+      <span>☰</span>
+      Menu
+    </a>
+  </nav>
+  <script src="js/script.js"></script>
 </body>
 </html>

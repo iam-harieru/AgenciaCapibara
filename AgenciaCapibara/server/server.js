@@ -8,6 +8,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const frontendPath = path.join(__dirname, "..", "frontend");
+app.use(express.static(frontendPath));
 app.use(express.static(__dirname));
 
 const produtosPath = path.join(__dirname, "produtos", "produtos.json");
