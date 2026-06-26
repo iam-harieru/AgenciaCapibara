@@ -56,6 +56,7 @@ const celulares = [
 ];
 
 const productsGrid = document.getElementById("productsGrid");
+const featuredProductsGrid = document.getElementById("featuredProductsGrid");
 const searchInput = document.getElementById("searchInput");
 const cartButton = document.getElementById("cartButton");
 const closeCartButton = document.getElementById("closeCartButton");
@@ -205,13 +206,13 @@ function closeCart() {
   cartOverlay?.classList.remove("open");
 }
 
-function renderProducts(lista) {
-  if (!productsGrid) return;
+function renderProducts(lista, target = productsGrid) {
+  if (!target) return;
 
-  productsGrid.innerHTML = "";
+  target.innerHTML = "";
 
   lista.forEach(produto => {
-    productsGrid.innerHTML += `
+    target.innerHTML += `
       <div class="card">
         <img src="${resolveImagePath(produto.imagem)}" alt="${produto.nome}">
         <h3>${produto.nome}</h3>
@@ -224,7 +225,7 @@ function renderProducts(lista) {
     `;
   });
 
-  document.querySelectorAll("[data-product-id]").forEach(button => {
+  target.querySelectorAll("[data-product-id]").forEach(button => {
     button.addEventListener("click", () => addToCart(button.getAttribute("data-product-id")));
   });
 }
@@ -239,7 +240,10 @@ const promoButtons = Array.from(document.querySelectorAll("button[data-promo-id]
 const favoriteButtons = Array.from(document.querySelectorAll("button[data-favorite-id]"));
 const departmentCards = Array.from(document.querySelectorAll(".department-card[data-department]"));
 const mobileNavItems = Array.from(document.querySelectorAll(".mobile-nav-item"));
+const pillButtons = Array.from(document.querySelectorAll(".pill-button"));
 const menuButton = document.querySelector(".menu-button");
+const promoSection = document.querySelector(".promo-section");
+const departmentsSection = document.querySelector(".departments-section");
 
 const favoritesKey = "beeFavorites";
 let favorites = JSON.parse(localStorage.getItem(favoritesKey) || "[]");
@@ -308,8 +312,31 @@ function bindDepartmentCards() {
   departmentCards.forEach(card => {
     card.addEventListener("click", () => {
       const department = card.dataset.department;
+      const filtered = celulares.filter(produto =>
+        produto.nome.toLowerCase().includes(department.toLowerCase()) ||
+        produto.descricao.toLowerCase().includes(department.toLowerCase())
+      );
+
+      renderProducts(filtered.length ? filtered : celulares);
       scrollToSection(".products-section");
-      alert(`Filtro por departamento: ${department} (em breve)`);
+    });
+  });
+}
+
+function bindPillButtons() {
+  pillButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const action = button.dataset.action;
+      if (!action) return;
+
+      pillButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      if (action === "departments") {
+        scrollToSection(".departments-section");
+      } else {
+        scrollToSection(".promo-section");
+      }
     });
   });
 }
@@ -342,7 +369,11 @@ function bindMenuButton() {
 }
 
 if (productsGrid) {
-  renderProducts(celulares);
+  renderProducts(celulares, productsGrid);
+}
+
+if (featuredProductsGrid) {
+  renderProducts(celulares, featuredProductsGrid);
 }
 
 if (promoButtons.length) {
@@ -356,6 +387,10 @@ if (favoriteButtons.length) {
 
 if (departmentCards.length) {
   bindDepartmentCards();
+}
+
+if (pillButtons.length) {
+  bindPillButtons();
 }
 
 if (mobileNavItems.length) {

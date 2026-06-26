@@ -28,7 +28,9 @@
     </div>
 
     <div class="header-actions">
-      <button class="menu-button" type="button" aria-label="Abrir menu">☰</button>
+      <button class="icon-button header-icon" type="button" aria-label="Notificações">🔔</button>
+      <button class="icon-button header-icon" type="button" aria-label="Favoritos">❤</button>
+      <button class="icon-button header-icon" type="button" aria-label="Conta">👤</button>
       <button class="cart-button" id="cartButton" type="button">
         🛒 <span class="cart-count" id="cartCount">0</span>
       </button>
@@ -54,21 +56,28 @@
 
   <!-- MAIN -->
   <main>
-        <!-- slide images -->
-    <div class="slideshow-container">
-      <div class="mySlides fade">
-      <img src="imgs/1.jpg" style="width:100%">
-      </div>
-      <div class="mySlides fade">
-      <img src="imgs/2.jpg" style="width:100%">
-      </div>
-      <div class="mySlides fade">
-      <img src="imgs/3.jpg" style="width:100%">
+    <div class="top-pill-nav">
+      <button class="pill-button active" data-action="coupons">Cupons</button>
+      <button class="pill-button" data-action="departments">Departamentos</button>
+      <button class="pill-button" data-action="promotions">Promoções</button>
     </div>
-<!-- Next and previous buttons -->
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
+
+    <section class="hero-banners">
+      <article class="hero-card hero-card-left">
+        <div>
+          <span class="hero-label">Grandes descontos em</span>
+          <h2>PERIFÉRICOS</h2>
+          <p>Mouse e teclados com até 20% de desconto no PIX.</p>
+        </div>
+      </article>
+      <article class="hero-card hero-card-right">
+        <div>
+          <span class="hero-label">Uma nova</span>
+          <h2>VIDA CELULAR</h2>
+          <p>Ofertas exclusivas em smartphones com frete rápido.</p>
+        </div>
+      </article>
+    </section>
 
     <section class="promo-section">
       <div class="promo-top">
@@ -141,7 +150,16 @@
           <div class="department-icon">🖱️</div>
           <span>PCs</span>
         </div>
+        <div class="department-card" data-department="Acessórios">
+          <div class="department-icon">🎮</div>
+          <span>Acessórios</span>
+        </div>
       </div>
+    </section>
+
+    <section class="featured-products-section">
+      <h2>Produtos em destaque</h2>
+      <div id="featuredProductsGrid" class="products-grid"></div>
     </section>
 
     <div class="sections">
